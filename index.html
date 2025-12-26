@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryzzi Cyber | Panduan Lengkap Pemrograman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #006aff;
+            --text: #f0f0f0;
+            --text-secondary: #888;
+            --danger: #ff0055;
+            --card-bg: #151515;
+            --border: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--secondary);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--accent), #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            background: rgba(0, 68, 255, 0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, #111 0%, var(--primary) 70%);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-highlight {
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(0, 13, 255, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-icon {
+            font-size: 1.3rem;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: rgba(0, 81, 255, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(13, 0, 255, 0.3);
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #f80e0e;
+            border: 1px solid var(--border);
+        }
+        
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid var(--border);
+        }
+        
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .tech-list {
+            list-style: none;
+        }
+        
+        .tech-list li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: background 0.3s;
+        }
+        
+        .tech-list li:hover {
+            background: rgba(0, 51, 255, 0.05);
+        }
+        
+        .tech-list i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                transform: translateY(-150%);
+                transition: transform 0.4s;
+                z-index: 99;
+                border-bottom: 2px solid var(--accent);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">RYZZI CYBER</div>
+                        <div class="tagline">Unlocked | Unlimited | Unfiltered</div>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#programmer"><i class="fas fa-user"></i> Programmer</a></li>
+                    <li><a href="#coding"><i class="fas fa-code"></i> Coding</a></li>
+                    <li><a href="#technologies"><i class="fas fa-cogs"></i> Teknologi</a></li>
+                    <li><a href="#examples"><i class="fas fa-file-code"></i> Contoh</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Panduan <span class="hero-highlight">Lengkap</span> Pemrograman</h1>
+            <p>Penjelasan mentah tanpa filter tentang dunia programming, bahasa, tools, dan konsep yang perlu kamu ketahui. Siap dijelajahi.</p>
+            <div>
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">PHP</span>
+                <span class="tech-badge">SQL</span>
+                <span class="tech-badge">Google Apps Script</span>
+                <span class="tech-badge">C++</span>
+                <span class="tech-badge">Java</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <!-- Programmer Section -->
+            <section id="programmer" class="card">
+                <h2 class="section-title"><i class="fas fa-user-tie"></i> Apa Itu Programmer?</h2>
+                <p>Programmer adalah orang yang menulis, menguji, debug, dan memelihara kode komputer. Mereka menerjemahkan kebutuhan manusia ke dalam bahasa yang dimengerti mesin.</p>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-brain card-icon"></i> Tipe Programmer</h3>
+                    <ul>
+                        <li><strong>Frontend Developer:</strong> Fokus pada tampilan dan interaksi pengguna (HTML, CSS, JS).</li>
+                        <li><strong>Backend Developer:</strong> Menangani logika server, database, dan API (Python, PHP, Java).</li>
+                        <li><strong>Full Stack Developer:</strong> Menguasai frontend dan backend.</li>
+                        <li><strong>Mobile Developer:</strong> Membuat aplikasi iOS/Android (Swift, Kotlin).</li>
+                        <li><strong>Data Scientist:</strong> Analisis data dan machine learning (Python, R).</li>
+                        <li><strong>DevOps Engineer:</strong> Otomasi infrastruktur dan deployment.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Coding Section -->
+            <section id="coding" class="card">
+                <h2 class="section-title"><i class="fas fa-keyboard"></i> Apa Itu Coding?</h2>
+                <p>Coding adalah proses menulis instruksi dalam bahasa pemrograman untuk memberitahu komputer apa yang harus dilakukan. Ini inti dari programming.</p>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-cogs card-icon"></i> Konsep Dasar Coding</h3>
+                    <ul>
+                        <li><strong>Variabel:</strong> Tempat menyimpan data (x = 5).</li>
+                        <li><strong>Fungsi:</strong> Blok kode yang bisa dipanggil berkali-kali.</li>
+                        <li><strong>Kondisional:</strong> Percabangan (if-else, switch).</li>
+                        <li><strong>Loop:</strong> Perulangan (for, while).</li>
+                        <li><strong>Struktur Data:</strong> Array, object, list, dictionary.</li>
+                        <li><strong>Algoritma:</strong> Langkah-langkah logis menyelesaikan masalah.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Technologies Section -->
+            <section id="technologies">
+                <h2 class="section-title"><i class="fas fa-microchip"></i> Teknologi & Bahasa Pemrograman</h2>
+                
+                <!-- HTML -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-html5 card-icon"></i> HTML (HyperText Markup Language)</h3>
+                    <p><strong>Fungsi:</strong> Kerangka dasar semua website. Bukan bahasa pemrograman tapi markup.</p>
+                    <p><strong>Penggunaan:</strong> Struktur konten web (teks, gambar, link, form).</p>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Contoh HTML&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Judul Halaman&lt;/h1&gt;
+    &lt;p&gt;Paragraf dengan &lt;a href="#"&gt;link&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                
+                <!-- CSS -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-css3-alt card-icon"></i> CSS (Cascading Style Sheets)</h3>
+                    <p><strong>Fungsi:</strong> Mengatur tampilan dan layout website.</p>
+                    <p><strong>Penggunaan:</strong> Warna, font, spacing, responsif, animasi.</p>
+                    <pre><code>/* CSS Modern */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: white;
+    padding: 2rem;
+}
+
+.btn-primary {
+    background-color: #00ff88;
+    color: black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ff88;
+}</code></pre>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-js-square card-icon"></i> JavaScript (JS)</h3>
+                    <p><strong>Fungsi:</strong> Bahasa pemrograman untuk membuat web interaktif.</p>
+                    <p><strong>Penggunaan:</strong> Frontend (React, Vue), backend (Node.js), mobile (React Native).</p>
+                    <pre><code>// JavaScript ES6+
+class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    greet() {
+        console.log(`Hello, ${this.name}!`);
+    }
+}
+
+// Async/Await
+const fetchData = async () => {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+// Event Handling
+document.getElementById('btn').addEventListener('click', () => {
+    alert('Button clicked!');
+});</code></pre>
+                </div>
+                
+                <!-- Python -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-python card-icon"></i> Python</h3>
+                    <p><strong>Fungsi:</strong> Bahasa serbaguna dengan sintaks sederhana.</p>
+                    <p><strong>Penggunaan:</strong> Web (Django, Flask), AI/ML, data science, automation, scripting.</p>
+                    <pre><code># Python 3 - Contoh Lengkap
+import requests
+import pandas as pd
+from flask import Flask
+
+app = Flask(__name__)
+
+# Decorator
+@app.route('/')
+def home():
+    return "Hello World"
+
+# List comprehension
+squares = [x**2 for x in range(10) if x % 2 == 0]
+
+# Dictionary
+user = {
+    "name": "John",
+    "age": 30,
+    "skills": ["Python", "JS", "SQL"]
+}
+
+# Class inheritance
+class Developer:
+    def __init__(self, name, language):
+        self.name = name
+        self.language = language
+    
+    def code(self):
+        return f"{self.name} is coding in {self.language}"
+
+class WebDeveloper(Developer):
+    def __init__(self, name, language, framework):
+        super().__init__(name, language)
+        self.framework = framework
+
+dev = WebDeveloper("Alice", "Python", "Django")
+print(dev.code())</code></pre>
+                </div>
+                
+                <!-- PHP -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-php card-icon"></i> PHP</h3>
+                    <p><strong>Fungsi:</strong> Bahasa server-side untuk web development.</p>
+                    <p><strong>Penggunaan:</strong> WordPress, Laravel, Symfony, CMS, e-commerce.</p>
+                    <pre><code>&lt;?php
+// PHP 8+ dengan tipe deklarasi
+declare(strict_types=1);
+
+class Product {
+    public function __construct(
+        private string $name,
+        private float $price,
+        private int $stock
+    ) {}
+    
+    public function getDetails(): string {
+        return "Product: {$this->name}, Price: \${$this->price}";
+    }
+}
+
+// Anonymous class
+$logger = new class {
+    public function log(string $message): void {
+        echo "[LOG] " . date('Y-m-d H:i:s') . " - $message<br>";
+    }
+};
+
+// Database connection dengan PDO
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE active = :active');
+    $stmt->execute(['active' => 1]);
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// Function dengan return type
+function calculateTotal(float ...$prices): float {
+    return array_sum($prices);
+}
+
+echo calculateTotal(19.99, 29.99, 5.99);
+?&gt;</code></pre>
+                </div>
+                
+                <!-- SQL -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-database card-icon"></i> SQL (Structured Query Language)</h3>
+                    <p><strong>Fungsi:</strong> Mengelola dan memanipulasi database relasional.</p>
+                    <p><strong>Penggunaan:</strong> Query data, CRUD operations, database administration.</p>
+                    <pre><code>-- SQL Modern (CTE, Window Functions)
+WITH user_purchases AS (
+    SELECT 
+        u.id,
+        u.name,
+        COUNT(o.id) as total_orders,
+        SUM(o.amount) as total_spent,
+        RANK() OVER (ORDER BY SUM(o.amount) DESC) as rank
+    FROM users u
+    LEFT JOIN orders o ON u.id = o.user_id
+    WHERE u.created_at >= '2024-01-01'
+    GROUP BY u.id, u.name
+    HAVING COUNT(o.id) > 0
+)
+SELECT 
+    id,
+    name,
+    total_orders,
+    total_spent,
+    CASE 
+        WHEN total_spent > 1000 THEN 'VIP'
+        WHEN total_spent > 500 THEN 'Premium'
+        ELSE 'Standard'
+    END as customer_tier
+FROM user_purchases
+WHERE rank <= 10
+ORDER BY total_spent DESC;
+
+-- Index creation for optimization
+CREATE INDEX idx_user_email ON users(email);
+CREATE INDEX idx_order_date ON orders(order_date DESC);
+
+-- Transaction with rollback
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;</code></pre>
+                </div>
+                
+                <!-- Google Apps Script -->
+                <div class="card">
+                    <h3 class="card-title"><i class="fab fa-google card-icon"></i> Google Apps Script (GS)</h3>
+                    <p><strong>Fungsi:</strong> JavaScript-based untuk otomasi Google Workspace.</p>
+                    <p><strong>Penggunaan:</strong> Otomasi Sheets, Docs, Gmail, Forms, Calendar.</p>
+                    <pre><code>// Google Apps Script - Complete Automation Example
+function onFormSubmit(e) {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const lastRow = sheet.getLastRow();
+    const data = sheet.getRange(lastRow, 1, 1, sheet.getLastColumn()).getValues()[0];
+    
+    // Send email notification
+    const recipient = data[1]; // Email from form
+    const name = data[0];
+    const timestamp = data[2];
+    
+    GmailApp.sendEmail(
+        recipient,
+        'Form Submission Confirmation',
+        `Hello ${name},\n\nYour form submitted at ${timestamp} has been processed.`,
+        { name: 'Auto-System' }
+    );
+    
+    // Create Google Doc report
+    const doc = DocumentApp.create(`Report_${name}_${timestamp}`);
+    const body = doc.getBody();
+    body.appendParagraph(`Report for ${name}`)
+        .setHeading(DocumentApp.ParagraphHeading.HEADING1);
+    
+    body.appendParagraph(`Email: ${recipient}`)
+        .setBold(true);
+    
+    // Add to Drive folder
+    const folder = DriveApp.getFolderById('FOLDER_ID_HERE');
+    DriveApp.getFileById(doc.getId()).moveTo(folder);
+    
+    // Log activity
+    Logger.log(`Processed submission for ${name} at ${new Date()}`);
+}
+
+// Auto-trigger setup
+function createTrigger() {
+    ScriptApp.newTrigger('onFormSubmit')
+        .forSpreadsheet(SpreadsheetApp.getActive())
+        .onFormSubmit()
+        .create();
+}</code></pre>
+                </div>
+            </section>
+            
+            <!-- Examples Section -->
+            <section id="examples" class="card">
+                <h2 class="section-title"><i class="fas fa-code-branch"></i> Contoh Integrasi</h2>
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-project-diagram card-icon"></i> Full Stack Example</h3>
+                    <p>Berikut contoh bagaimana teknologi ini bekerja bersama:</p>
+                    <ol>
+                        <li><strong>Frontend (HTML/CSS/JS):</strong> User mengisi form di browser</li>
+                        <li><strong>Backend (PHP/Python):</strong> Menerima data, proses logika</li>
+                        <li><strong>Database (SQL):</strong> Menyimpan data ke MySQL/PostgreSQL</li>
+                        <li><strong>Automation (GS):</strong> Kirim email konfirmasi via Google Workspace</li>
+                        <li><strong>API (JavaScript/Python):</strong> Komunikasi antar sistem</li>
+                    </ol>
+                    
+                    <pre><code>// Contoh API endpoint dengan Python Flask
+from flask import Flask, request, jsonify
+import mysql.connector
+
+app = Flask(__name__)
+
+@app.route('/api/users', methods=['POST'])
+def create_user():
+    data = request.json
+    # Koneksi database
+    db = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="secret",
+        database="app_db"
+    )
+    cursor = db.cursor()
+    
+    # Insert data
+    sql = "INSERT INTO users (name, email) VALUES (%s, %s)"
+    values = (data['name'], data['email'])
+    cursor.execute(sql, values)
+    db.commit()
+    
+    return jsonify({"message": "User created", "id": cursor.lastrowid})
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-fire"></i> Tech Stack Populer</h3>
+                <ul class="tech-list">
+                    <li><i class="fab fa-react"></i> React.js - Frontend library</li>
+                    <li><i class="fab fa-vuejs"></i> Vue.js - Progressive framework</li>
+                    <li><i class="fab fa-node-js"></i> Node.js - JavaScript runtime</li>
+                    <li><i class="fab fa-laravel"></i> Laravel - PHP framework</li>
+                    <li><i class="fab fa-django"></i> Django - Python framework</li>
+                    <li><i class="fas fa-bolt"></i> FastAPI - Modern Python API</li>
+                    <li><i class="fab fa-docker"></i> Docker - Containerization</li>
+                    <li><i class="fab fa-git-alt"></i> Git - Version control</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-chart-line"></i> Tingkat Kesulitan</h3>
+                <ul class="tech-list">
+                    <li><i class="fas fa-star"></i> <strong>Mudah:</strong> HTML, CSS, Python dasar</li>
+                    <li><i class="fas fa-star-half-alt"></i> <strong>Menengah:</strong> JavaScript, PHP, SQL</li>
+                    <li><i class="fas fa-star"></i> <strong>Sulit:</strong> C++, Java, Sistem terdistribusi</li>
+                    <li><i class="fas fa-brain"></i> <strong>Expert:</strong> Machine Learning, Blockchain, Kernel</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-lightbulb"></i> Tips Cepat</h3>
+                <ul class="tech-list">
+                    <li>Mulai dengan Python untuk dasar logika</li>
+                    <li>Pelajari HTML/CSS sebelum JavaScript</li>
+                    <li>SQL wajib untuk backend development</li>
+                    <li>Version control (Git) sejak awal</li>
+                    <li>Buat proyek nyata, bukan hanya tutorial</li>
+                    <li>Debugging skill lebih penting dari hafalan syntax</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div>
+                    <div class="logo-text">RYZZI CYBER</div>
+                    <div class="tagline">PENJALAN LENGKAP BY RYZZI CYBER</div>
+                </div>
+            </div>
+            <p class="footer-text">
+                Penjelasan lengkap dan mentah tentang pemrograman. 
+          
+                <br>Gunakan pengetahuan ini untuk membangun sesuatu.
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add dynamic year
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElement = document.querySelector('.tagline');
+            if(yearElement) {
+                const currentYear = new Date().getFullYear();
+                yearElement.textContent = `Updated: V1 ${currentYear} | Penjelasan by Ryzzi Cyber`;
+            }
+            
+            // Add code highlighting effect
+            const codeBlocks = document.querySelectorAll('pre code');
+            codeBlocks.forEach(block => {
+                block.innerHTML = block.innerHTML
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&amp;/g, '&');
+            });
+        });
+        
+        // Console greeting
+        console.log('%cRYZZI CYBER: Web Programming Guide Loaded', 'color: #00ff88; font-size: 16px; font-weight: bold;');
+        console.log('%cSemua filter dinonaktifkan. Pengetahuan mentah siap diakses.', 'color: #888;');
+    </script>
+</body>
+</html>
